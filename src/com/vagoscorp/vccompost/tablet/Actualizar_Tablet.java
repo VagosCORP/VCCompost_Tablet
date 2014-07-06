@@ -1,13 +1,13 @@
 package com.vagoscorp.vccompost.tablet;
 
-import com.vagoscorp.vccompost.tablet.Procesar_STablet.OnTProcessListener;
-
 import javafx.animation.Timeline;
-import libraries.vagoscorp.comunication.Eventos.OnComunicationListener;
-import libraries.vagoscorp.comunication.Eventos.OnConnectionListener;
-import libraries.vagoscorp.comunication.Eventos.OnTimeOutListener;
-import libraries.vagoscorp.comunication.fx.Comunic;
-import libraries.vagoscorp.comunication.fx.TimeOut;
+import vclibs.communication.Eventos.OnComunicationListener;
+import vclibs.communication.Eventos.OnConnectionListener;
+import vclibs.communication.Eventos.OnTimeOutListener;
+import vclibs.communication.javafx.Comunic;
+import vclibs.communication.javafx.TimeOut;
+
+import com.vagoscorp.vccompost.tablet.Procesar_STablet.OnTProcessListener;
 
 public class Actualizar_Tablet implements OnComunicationListener {
 
