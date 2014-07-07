@@ -1,4 +1,4 @@
-package com.vagoscorp.vccompost.tablet;
+package vccompost.tablet;
 
 import java.net.URL;
 import java.util.ResourceBundle;

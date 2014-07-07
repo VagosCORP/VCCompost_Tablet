@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="root" prefHeight="768.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.vagoscorp.vccompost.tablet.LayoutTabletController">
+<AnchorPane fx:id="root" prefHeight="768.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="vccompost.tablet.LayoutTabletController">
   <!-- TODO Add Nodes -->
   <children>
     <Button fx:id="But1" layoutX="79.0" layoutY="160.0" mnemonicParsing="false" onAction="#But1Click" text="Consultar" />

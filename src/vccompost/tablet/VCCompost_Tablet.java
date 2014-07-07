@@ -1,4 +1,4 @@
-package com.vagoscorp.vccompost.tablet;
+package vccompost.tablet;
 	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
