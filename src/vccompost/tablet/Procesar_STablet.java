@@ -10,20 +10,17 @@ public class Procesar_STablet extends SwingWorker<Integer, Integer> {
 	boolean[] valTablet = new boolean[32];
 
 	OnTProcessListener onTPListener;
-
 	public interface OnTProcessListener {
 		public void onTProcessStarted(int avance);
 		public void onTProcessFinished();
 	}
-
 	public void setOnTempProcessListener(OnTProcessListener otpl) {
 		onTPListener = otpl;
 	}
-	
 	public Procesar_STablet(String datos) {
 		tarea = datos;
 	}
-
+	
 	@Override
 	protected Integer doInBackground() throws Exception {
 		// DB#<String hora1>;... <String hora32>;/
@@ -55,5 +52,4 @@ public class Procesar_STablet extends SwingWorker<Integer, Integer> {
 			onTPListener.onTProcessStarted(upd.get(0));
 		super.process(upd);
 	}
-
 }

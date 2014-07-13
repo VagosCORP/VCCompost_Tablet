@@ -27,7 +27,7 @@
     <Button fx:id="ButBien" layoutX="85.0" layoutY="341.0" mnemonicParsing="false" onAction="#ButBienClick" text="Bien" />
     <Button fx:id="ButTibio" layoutX="156.0" layoutY="341.0" mnemonicParsing="false" onAction="#ButTibioClick" text="Tibio" />
     <Button fx:id="ButCaliente" layoutX="227.0" layoutY="341.0" mnemonicParsing="false" onAction="#ButCalienteClick" text="Caliente" />
-    <TextField fx:id="IP" layoutX="13.0" layoutY="14.0" prefWidth="200.0" promptText="Tablet IP" text="10.0.0.7" />
+    <TextField fx:id="IP" layoutX="13.0" layoutY="14.0" prefWidth="200.0" promptText="Tablet IP" text="20.0.0.7" />
     <TextField fx:id="Port" layoutX="13.0" layoutY="40.0" prefWidth="200.0" promptText="Tablet Port" text="2000" />
     <Button fx:id="updIP" layoutX="103.0" layoutY="66.0" mnemonicParsing="false" onAction="#setIP" text="set IP &amp; Port" />
   </children>

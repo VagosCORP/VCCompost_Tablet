@@ -1,6 +1,7 @@
-package vccompost.tablet;
+package vccompost.tablet.deprecated;
 
 import javafx.animation.Timeline;
+import vccompost.tablet.Procesar_STablet;
 import vccompost.tablet.Procesar_STablet.OnTProcessListener;
 import vclibs.communication.Eventos.OnComunicationListener;
 import vclibs.communication.Eventos.OnConnectionListener;
@@ -13,7 +14,7 @@ public class Actualizar_Tablet implements OnComunicationListener {
 	public Comunic comunic;
 	TimeOut timeout;
 	Procesar_STablet procTablet;
-	public boolean[] valTablet = new boolean[32];
+	boolean[] valTablet = new boolean[32];
 	
 	Timeline timer;
 	int vcont = 0;
@@ -29,6 +30,7 @@ public class Actualizar_Tablet implements OnComunicationListener {
 	boolean Actualizando = false;
 
 	public Actualizar_Tablet(String sIP, int sPort) {
+		String sep = ";";
 		serverip = sIP;
 		serverport = sPort;
 		/*
@@ -39,6 +41,10 @@ public class Actualizar_Tablet implements OnComunicationListener {
 		 * <x>;<y>;<hora>;<d1>;<d2>;<d3>;<d4>&/
 		 */
 		for(int i = 0; i < 32;i++) {
+			vagones[i] = "1#"+(i+1)+"#3#"+
+			 "100"+sep+"200"+sep+"01-01-2014 12:30:20"+sep+"12"+sep+"26"+sep+"30"+sep+"31"+"&"+
+			 "200"+sep+"400"+sep+"01-01-2014 12:30:20"+sep+"26"+sep+"51"+sep+"25"+sep+"32"+"&"+
+			 "300"+sep+"600"+sep+"01-01-2014 12:30:20"+sep+"21"+sep+"32"+sep+"40"+sep+"33"+"&/";
 			horas[i] = "01-01-2014 12:30:20";
 			valTablet[i] = false;
 		}
@@ -54,8 +60,6 @@ public class Actualizar_Tablet implements OnComunicationListener {
 		if (comunic.estado != comunic.CONNECTED) {
 			comunic.Detener_Actividad();
 			comunic = new Comunic(serverip, serverport);
-			comunic.edebug = false;
-//			comunic.idebug = false;
 			comunic.setConnectionListener(new OnConnectionListener() {
 
 				@Override
@@ -82,6 +86,43 @@ public class Actualizar_Tablet implements OnComunicationListener {
 			enviarDatos("2#"+nvag+";"+vagActual+";/");
 	}
 	
+	public void enviarVagones(final int numvagon) {
+		if (comunic.estado != comunic.CONNECTED && !valTablet[numvagon]) {
+			Actualizando = true;
+			comunic.Detener_Actividad();
+			comunic = new Comunic(serverip, serverport);
+			comunic.setConnectionListener(new OnConnectionListener() {
+
+				@Override
+				public void onConnectionstablished() {
+//					comunic.enviar("Vagones[numvagon].getData()");
+					comunic.enviar(vagones[numvagon]);
+				}
+
+				@Override
+				public void onConnectionfinished() {
+					if(numvagon < 31)
+						enviarVagones(numvagon+1);
+//						if(numvagon == 5);
+					else {
+						iniciarServer();
+						Actualizando = false;
+					}
+				}
+			});
+			th = new Thread(comunic);
+			th.setDaemon(true);
+			th.start();
+		}else {
+			if(numvagon < 31)
+				enviarVagones(numvagon+1);
+			else {
+				iniciarServer();
+				Actualizando = false;
+			}
+		}
+	}
+	
 	public void Actualizar_IP(String IP, int port) {
 		comunic.Detener_Actividad();
 		serverip = IP;
@@ -91,25 +132,20 @@ public class Actualizar_Tablet implements OnComunicationListener {
 
 	private void iniciarServer() {
 		comunic = new Comunic(serverport);
-		comunic.edebug = false;
-//		comunic.idebug = false;
 		comunic.setComunicationListener(this);
 		comunic.setConnectionListener(new OnConnectionListener() {
 
 			@Override
 			public void onConnectionstablished() {
 				timeout = new TimeOut(8000);
-				timeout.edebug = false;
 				timeout.setTimeOutListener(new OnTimeOutListener() {
 
 					@Override
 					public void onTimeOutEnabled() {
-						
 					}
 
 					@Override
 					public void onTimeOutCancelled() {
-						
 					}
 
 					@Override
@@ -154,8 +190,9 @@ public class Actualizar_Tablet implements OnComunicationListener {
 			
 			@Override
 			public void onTProcessFinished() {
-				valTablet = procTablet.valTablet;
-				iniciarServer();
+//				valTablet = procTablet.valTablet;//Deprecated
+				enviarVagones(0);
+//				iniciarServer();
 			}
 		});
 		procTablet.execute();
