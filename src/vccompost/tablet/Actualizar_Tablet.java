@@ -25,7 +25,7 @@ public class Actualizar_Tablet implements OnComunicationListener {
 	String tarea = "";
 	boolean timeOutEnabled = false;
 	String[] vagones = new String[32];
-	static String[] horas = new String[32];
+	public static String[] horas = new String[32];
 	boolean Actualizando = false;
 
 	public Actualizar_Tablet(String sIP, int sPort) {
@@ -43,6 +43,10 @@ public class Actualizar_Tablet implements OnComunicationListener {
 			valTablet[i] = false;
 		}
 		iniciarServer();
+	}
+	
+	public void updHora(int nR, String nHora) {
+		horas[nR] = nHora;
 	}
 
 	public void consultar() {
