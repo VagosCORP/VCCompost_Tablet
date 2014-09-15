@@ -86,7 +86,7 @@ public class Actualizar_Tablet implements OnComunicationListener {
 			enviarDatos("2#"+nvag+";"+vagActual+";/");
 	}
 	
-	public void enviarVagones(final int numvagon) {
+	public void enviarVagones(int numvagon) {
 		if (comunic.estado != comunic.CONNECTED && !valTablet[numvagon]) {
 			Actualizando = true;
 			comunic.Detener_Actividad();
@@ -102,7 +102,7 @@ public class Actualizar_Tablet implements OnComunicationListener {
 				@Override
 				public void onConnectionfinished() {
 					if(numvagon < 31)
-						enviarVagones(numvagon+1);
+						enviarVagones(numvagon + 1);
 //						if(numvagon == 5);
 					else {
 						iniciarServer();

@@ -40,13 +40,16 @@ public class Actualizar_Tablet implements OnComunicationListener {
 		 */
 		for(int i = 0; i < 32;i++) {
 			horas[i] = "01-01-2014 12:30:20";
+			vagones[i] = "";
 			valTablet[i] = false;
 		}
 		iniciarServer();
 	}
 	
-	public void updHora(int nR, String nHora) {
+	public void updRAMdata(int nR, String nHora, String vData) {
 		horas[nR] = nHora;
+		vagones[nR] = vData;
+		enviarDatos(vData);
 	}
 
 	public void consultar() {
@@ -84,6 +87,42 @@ public class Actualizar_Tablet implements OnComunicationListener {
 		 */
 		if(!Actualizando)
 			enviarDatos("2#"+nvag+";"+vagActual+";/");
+	}
+	
+	public void enviarVagones(int numvagon) {
+		if (comunic.estado != comunic.CONNECTED &&
+				!valTablet[numvagon] && vagones[numvagon] != "") {
+			Actualizando = true;
+			comunic.Detener_Actividad();
+			comunic = new Comunic(serverip, serverport);
+			comunic.setConnectionListener(new OnConnectionListener() {
+
+				@Override
+				public void onConnectionstablished() {
+					comunic.enviar(vagones[numvagon]);
+				}
+
+				@Override
+				public void onConnectionfinished() {
+					if(numvagon < 31)
+						enviarVagones(numvagon+1);
+					else {
+						iniciarServer();
+						Actualizando = false;
+					}
+				}
+			});
+			th = new Thread(comunic);
+			th.setDaemon(true);
+			th.start();
+		}else {
+			if(numvagon < 31)
+				enviarVagones(numvagon+1);
+			else {
+				iniciarServer();
+				Actualizando = false;
+			}
+		}
 	}
 	
 	public void Actualizar_IP(String IP, int port) {
@@ -159,7 +198,8 @@ public class Actualizar_Tablet implements OnComunicationListener {
 			@Override
 			public void onTProcessFinished() {
 				valTablet = procTablet.valTablet;
-				iniciarServer();
+				enviarVagones(0);
+//				iniciarServer();
 			}
 		});
 		procTablet.execute();
