@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="root" prefHeight="768.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="vccompost.tablet.LayoutTabletController">
+<AnchorPane fx:id="root" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vccompost.tablet.LayoutTabletController">
   <!-- TODO Add Nodes -->
   <children>
     <Button fx:id="But1" layoutX="79.0" layoutY="160.0" mnemonicParsing="false" onAction="#But1Click" text="Consultar" />
@@ -19,16 +19,16 @@
     <ListView id="list6" layoutX="429.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0" />
     <ListView id="list7" layoutX="638.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0" />
     <ListView id="list8" layoutX="846.0" layoutY="315.0" prefHeight="200.0" prefWidth="200.0" />
-    <Button fx:id="But2" layoutX="214.0" layoutY="233.0" mnemonicParsing="false" onAction="#But2Click" text="Upd Grúa" />
+    <Button fx:id="But2" layoutX="228.0" layoutY="231.0" mnemonicParsing="false" onAction="#But2Click" text="Upd Grúa" />
     <TextField fx:id="aDonde" layoutX="14.0" layoutY="213.0" prefWidth="200.0" promptText="A Donde" />
     <TextField fx:id="posActual" layoutX="14.0" layoutY="246.0" prefWidth="200.0" promptText="Posición Actual" />
     <TextField fx:id="numVag" layoutX="14.0" layoutY="315.0" prefWidth="293.0" promptText="num vag" />
-    <Button id="Butfrio" fx:id="ButFrio" layoutX="14.0" layoutY="341.0" mnemonicParsing="false" onAction="#ButFrioClick" text="Frio" />
-    <Button fx:id="ButBien" layoutX="85.0" layoutY="341.0" mnemonicParsing="false" onAction="#ButBienClick" text="Bien" />
-    <Button fx:id="ButTibio" layoutX="156.0" layoutY="341.0" mnemonicParsing="false" onAction="#ButTibioClick" text="Tibio" />
-    <Button fx:id="ButCaliente" layoutX="227.0" layoutY="341.0" mnemonicParsing="false" onAction="#ButCalienteClick" text="Caliente" />
+    <Button id="Butfrio" fx:id="ButFrio" layoutX="13.0" layoutY="357.0" mnemonicParsing="false" onAction="#ButFrioClick" text="Frio" />
+    <Button fx:id="ButBien" layoutX="90.0" layoutY="357.0" mnemonicParsing="false" onAction="#ButBienClick" text="Bien" />
+    <Button fx:id="ButTibio" layoutX="159.0" layoutY="357.0" mnemonicParsing="false" onAction="#ButTibioClick" text="Tibio" />
+    <Button fx:id="ButCaliente" layoutX="233.0" layoutY="357.0" mnemonicParsing="false" onAction="#ButCalienteClick" text="Caliente" />
     <TextField fx:id="IP" layoutX="13.0" layoutY="14.0" prefWidth="200.0" promptText="Tablet IP" text="20.0.0.7" />
     <TextField fx:id="Port" layoutX="13.0" layoutY="40.0" prefWidth="200.0" promptText="Tablet Port" text="2000" />
-    <Button fx:id="updIP" layoutX="103.0" layoutY="66.0" mnemonicParsing="false" onAction="#setIP" text="set IP &amp; Port" />
+    <Button fx:id="updIP" layoutX="109.0" layoutY="79.0" mnemonicParsing="false" onAction="#setIP" text="set IP &amp; Port" />
   </children>
 </AnchorPane>
